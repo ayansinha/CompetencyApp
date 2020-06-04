@@ -21,14 +21,23 @@ class AssociateViewModel(application: Application): AndroidViewModel(application
         allAssociates = repository.fetchListOfAssociates()
     }
 
+    /**
+     * insert single associate
+     */
     fun insert(associateEntity: AssociateEntity) = viewModelScope.launch {
         repository.insertAssociate(associateEntity)
     }
 
+    /**
+     * update associate
+     */
     fun update(associateEntity: AssociateEntity) = viewModelScope.launch {
         repository.updateAssociate(associateEntity)
     }
 
+    /**
+     * delete associate
+     */
     fun delete(id: Long) = viewModelScope.launch {
         repository.deleteAssociate(id)
     }

@@ -15,7 +15,7 @@ interface AssociateDAO {
     fun fetchAllAssociates(): LiveData<MutableList<AssociateEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createAssociate(associateEntity: AssociateEntity)
+    suspend fun createAssociate(associateEntity: AssociateEntity): Long
 
     @Query("DELETE FROM associate WHERE associateId = :id")
     suspend fun deleteAssociateById(id: Long)

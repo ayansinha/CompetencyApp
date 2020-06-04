@@ -29,13 +29,10 @@ import org.dtransform.competencyapp.ui.project.viewmodel.ProjectViewModel
 class ActivityAddAssociate : AppCompatActivity() {
 
 
-    //private var associateEntity: AssociateEntity? = null
     private lateinit var associateViewModel: AssociateViewModel
     private lateinit var projectViewModel: ProjectViewModel
     private lateinit var associateEntity: AssociateEntity
     private var projectList: MutableList<String> = ArrayList()
-    //private var projectArray = emptyArray<String>()
-    //private var projectArray = Array<String>(0) { _ -> "" }
     private var isComingFrom: String? = null
 
 
@@ -52,20 +49,15 @@ class ActivityAddAssociate : AppCompatActivity() {
         initUI(intent)
     }
 
+    /**
+     * initializing ui
+     */
     private fun initUI(intent: Intent) {
 
-
-        //projectArray = arrayOf("")
         projectList.clear()
         progressBarAssociate.visibility = View.GONE
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup)
         val spinner = findViewById<Spinner>(R.id.spinnerCurrentProjects)
-        //val linearLayout = findViewById<LinearLayout>(R.id.spinnerContainer)
-        //val spinner = Spinner(this)
-        /*spinner.layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )*/
 
         val id = inputAssociateID.text
         val name = inputAssociateName.text
@@ -132,15 +124,7 @@ class ActivityAddAssociate : AppCompatActivity() {
         projectViewModel.allProjects.observe(this, Observer {
 
 
-            for (i in 0 until it.size) {
-                //projectArray = arrayOf(it[i].projectName)
-                /*projectArray = Array(arr.size) {
-                    arr[i].projectName
-                }*/
-                //projectArray[i] = arr[i].projectName
-            }
             it.forEach { item ->
-                //projectArray = arrayOf(item.projectName)
                 projectList.add(item.projectName)
             }
             Log.e("IT SIZE", "${it.size}")
@@ -158,14 +142,6 @@ class ActivityAddAssociate : AppCompatActivity() {
             "ATT",
             "TMobile",
             "Bell Canada")
-        //val spinnerArray = arrayOfNulls<String>(projectList.size)
-        //projectList.toTypedArray()
-
-        //Log.e("SPINNER ARRAY", spinnerArray.toString())
-        //Log.e("SPINNER ARRAY SIZE ", "" + spinnerArray.size)
-        //if (spinner != null) {
-        /*val array = arrayOfNulls<String>(list.size)
-        list.toArray(array)*/
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerArray)
         //spinner.adapter = ArrayAdapter(this@ActivityAddAssociate, android.R.layout.simple_spinner_dropdown_item, projectArray)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -188,9 +164,9 @@ class ActivityAddAssociate : AppCompatActivity() {
         }
 
 
-        //linearLayout?.addView(spinner)
-        //}
-
+        /**
+         * add associate entry to database
+         */
         buttonSubmitAssociate.setOnClickListener {
             if ((!TextUtils.isEmpty(id)) && (!TextUtils.isEmpty(name)) && (!TextUtils.isEmpty(band)) && (!TextUtils.isEmpty(
                     designation

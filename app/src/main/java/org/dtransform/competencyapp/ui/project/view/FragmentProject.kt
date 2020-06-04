@@ -137,6 +137,9 @@ class FragmentProject : Fragment(), ProjectAdapter.OnItemClickListener {
         }
     }
 
+    /**
+     * setup view model and factory for associate
+     */
     private fun setUpUIViewModel() {
 
         projectViewModel =
@@ -196,6 +199,9 @@ class FragmentProject : Fragment(), ProjectAdapter.OnItemClickListener {
         })
     }
 
+    /**
+     * on item click of project
+     */
     override fun onItemClick(projectEntity: ProjectEntity) {
         val intent = Intent(requireActivity(), ActivityAddProject::class.java)
         intent.putExtra("addOrUpdate", "update")

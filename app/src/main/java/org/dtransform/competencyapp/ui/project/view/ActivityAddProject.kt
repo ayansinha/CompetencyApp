@@ -36,12 +36,18 @@ class ActivityAddProject: AppCompatActivity() {
         initUI()
     }
 
+    /**
+     * initializing ui
+     */
     private fun initUI() {
         if (isAddOrUpdate.equals("update"))
             inputCurrentProject.setText(projectName)
 
         val projectName = inputCurrentProject.text
         inputCurrentProject.text = projectName
+        /**
+         * add project entry to database
+         */
         buttonSubmitProject.setOnClickListener {
             progressBarProject.visibility = View.VISIBLE
             Log.e("project name" , projectName.toString())

@@ -1,20 +1,25 @@
-package org.dtransform.competencyapp.ui.dashboard
+package org.dtransform.competencyapp.ui.associate
 
 
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import org.dtransform.competencyapp.R
+import org.dtransform.competencyapp.ui.associate.view.FragmentAssociate
+import org.dtransform.competencyapp.ui.dashboard.DashboardActivity
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,6 +31,36 @@ class FragmentAssociteTest {
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(DashboardActivity::class.java)
+
+    @get: Rule
+    val activityRule: ActivityTestRule<DashboardActivity> =
+        ActivityTestRule(DashboardActivity::class.java, false, false)
+    private val intent = Intent()
+
+    @Before
+    fun setUp() {
+        activityRule.launchActivity(intent)
+    }
+
+    /**
+     * check if app launch successfully
+     */
+    @Test
+    fun appLaunchSuccessfully() {
+        ActivityScenario.launch(DashboardActivity::class.java)
+    }
+
+    /**
+     * check if {associate fragment} is Displayed
+     */
+    @Test
+    fun checkAssociateFragmentIsDisplayed() {
+        val fragmentAssociate = FragmentAssociate()
+        activityRule.activity.supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainer, fragmentAssociate).commit()
+    }
+
+
 
     @Test
     fun fragmentAssociteTest() {

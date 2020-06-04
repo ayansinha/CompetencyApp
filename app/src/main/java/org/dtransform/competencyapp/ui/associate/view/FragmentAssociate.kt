@@ -50,6 +50,9 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
         val toolbar: Toolbar = view.findViewById(R.id.toolBarAssociate)
         toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
+                /**
+                 * add to next activity
+                 */
                 R.id.actionAddAssociate -> {
                     //Toast.makeText(activity, "add associate", Toast.LENGTH_SHORT).show()
                     requireContext().let {
@@ -58,6 +61,9 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
                         startActivity(intent)
                     }
                 }
+                /**
+                 * search associate entry
+                 */
                 R.id.actionSearchAssociate -> {
                     val searchView = item.actionView as SearchView
                     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -133,6 +139,9 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
     }
 
 
+    /**
+     * setup view model and factory for associate
+     */
     private fun setUpUIViewModel() {
 
         associateViewModel = ViewModelProvider(activity as AppCompatActivity).get(AssociateViewModel::class.java)
@@ -172,6 +181,9 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
         }
     }
 
+    /**
+     * on item click of associate
+     */
     override fun onItemClick(associateEntity: AssociateEntity) {
         Log.e("name", " " + associateEntity.associateName)
         Log.e("id", " " + associateEntity.associateId)

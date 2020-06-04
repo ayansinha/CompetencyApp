@@ -20,9 +20,6 @@ interface ProjectDAO{
     suspend fun insertListOfProjects(projectEntity: MutableList<ProjectEntity>)
 
     @Insert
-    suspend fun createProject(projectEntity: ProjectEntity)
-
-    /*@Query("SELECT * FROM associate LIMIT 1")
-    suspend fun ifEmpty(projectEntity: ProjectEntity) : MutableList<ProjectEntity>*/
+    suspend fun createProject(projectEntity: ProjectEntity): Long
 
 }

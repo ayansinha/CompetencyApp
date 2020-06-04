@@ -22,10 +22,16 @@ class ProjectViewModel(application: Application): AndroidViewModel(application) 
         allProjects = repository.fetchListOfProjects()
     }
 
+    /**
+     * insert project
+     */
     fun insert(projectEntity: ProjectEntity) = viewModelScope.launch {
         repository.insertProject(projectEntity)
     }
 
+    /**
+     * insert list of project
+     */
     fun insertListOfProjects(projectList: MutableList<ProjectEntity>) = viewModelScope.launch {
         repository.inertListOfProjects(projectList)
     }

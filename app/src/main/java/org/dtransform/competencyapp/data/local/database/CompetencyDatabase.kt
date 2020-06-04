@@ -24,6 +24,9 @@ abstract class CompetencyDatabase: RoomDatabase() {
         @Volatile
         private var instance: CompetencyDatabase? = null
 
+        /**
+         * singleton instance of database
+         */
         fun getInstance(context: Context): CompetencyDatabase? {
             if (instance == null) {
                 synchronized(CompetencyDatabase::class) {
