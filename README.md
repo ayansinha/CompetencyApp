@@ -11,3 +11,6 @@ Library reference resources:
     Live Data
     Espresso
     JUnitRunner
+Demo Video:
+
+![competency_app_demo](https://user-images.githubusercontent.com/3283162/83746746-30ea3680-a67d-11ea-96fb-aaa0971ac787.gif)
