@@ -23,16 +23,32 @@ class ProjectRepository(application: Application) {
         projectList = projectDAO.fetchAllProjects()
     }
 
+    /**
+     * fetching list of projects
+     */
     fun fetchListOfProjects(): LiveData<MutableList<ProjectEntity>> {
         return projectList
     }
 
+    /**
+     * inserting list of projects
+     */
     suspend fun inertListOfProjects(projectList: MutableList<ProjectEntity>) {
         projectDAO.insertListOfProjects(projectList)
     }
 
+    /**
+     * insert single project
+     */
     suspend fun insertProject(projectEntity: ProjectEntity) {
         projectDAO.createProject(projectEntity)
+    }
+
+    /**
+     * delete single project
+     */
+    suspend fun deleteProject(projectName:String) {
+        projectDAO.deleteProjectByName(projectName)
     }
 
 }

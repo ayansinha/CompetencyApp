@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,9 +42,6 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_associate, container, false)
 
-
-
-
         val toolbar: Toolbar = view.findViewById(R.id.toolBarAssociate)
         toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -54,7 +49,6 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
                  * add to next activity
                  */
                 R.id.actionAddAssociate -> {
-                    //Toast.makeText(activity, "add associate", Toast.LENGTH_SHORT).show()
                     requireContext().let {
                         val intent = Intent(it, ActivityAddAssociate::class.java)
                         intent.putExtra("addOrUpdate", "add")
@@ -109,7 +103,7 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setUpUIViewModel()
+
         /**
          * swipe to delete
          */
@@ -117,7 +111,6 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val adapter = recyclerViewAssociate.adapter as AssociateAdapter
                 adapter.removeItem(viewHolder.adapterPosition)
-                Log.e("POS ->" , "${viewHolder.adapterPosition}")
                 deleteEmployeeById(viewHolder.adapterPosition)
             }
         }
@@ -156,7 +149,6 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
                 recyclerViewAdapter!!.addAssociates(it)
                 recyclerViewAdapter!!.notifyDataSetChanged()
             }
-            Log.e("TAG", "ITEMS: $it")
         })
     }
 
@@ -169,7 +161,6 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.actionAddAssociate -> {
-                //Toast.makeText(activity , "add on click" , Toast.LENGTH_SHORT).show()
                 Log.e("add", "add Associate")
                 true
             }
@@ -185,13 +176,6 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
      * on item click of associate
      */
     override fun onItemClick(associateEntity: AssociateEntity) {
-        Log.e("name", " " + associateEntity.associateName)
-        Log.e("id", " " + associateEntity.associateId)
-        Log.e("band", " " + associateEntity.associateBand)
-        Log.e("designation", " " + associateEntity.associateDesignation)
-        Log.e("competency", " " + associateEntity.associateCompetency)
-        Log.e("cp", " " + associateEntity.associateCurrentProject)
-
         val intent = Intent(context, ActivityAddAssociate::class.java)
 
         intent.putExtra("addOrUpdate", "update")

@@ -1,6 +1,7 @@
 package org.dtransform.competencyapp.data.local.entity
 
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -10,22 +11,22 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "associate")
 data class AssociateEntity(
-    /*@ColumnInfo(name = "associateID")*/
+    @ColumnInfo(name = "associateID")
     var associateId: String,
 
-    /*@ColumnInfo(name = "associateNAME")*/
+    @ColumnInfo(name = "associateNAME")
     var associateName: String,
 
-    /*@ColumnInfo(name = "associateBAND")*/
+    @ColumnInfo(name = "associateBAND")
     var associateBand: String,
 
-    /*@ColumnInfo(name = "associateDESIGNATION")*/
+    @ColumnInfo(name = "associateDESIGNATION")
     var associateDesignation: String,
 
-    /*@ColumnInfo(name = "associateCOMPETENCY")*/
+    @ColumnInfo(name = "associateCOMPETENCY")
     var associateCompetency: String,
 
-    /*@ColumnInfo(name = "associateCP")*/
+    @ColumnInfo(name = "associateCP")
     var associateCurrentProject: String
     ) {
 

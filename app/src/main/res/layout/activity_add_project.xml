@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@color/colorWhite"
         app:theme="@style/AppTheme.Toolbar"
-        app:title="Add Project"
+        app:title="@string/title_add_project"
         app:titleTextColor="@color/colorWhite" />
 
     <com.google.android.material.textfield.TextInputLayout

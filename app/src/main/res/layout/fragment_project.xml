@@ -16,7 +16,7 @@
         app:menu="@menu/menu_project"
         app:subtitleTextColor="@color/colorWhite"
         app:theme="@style/AppTheme.Toolbar"
-        app:title="Project"
+        app:title="@string/title_project"
         app:titleTextColor="@color/colorWhite" />
 
 

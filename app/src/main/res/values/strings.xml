@@ -17,6 +17,24 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="title_project">Project</string>
+    <string name="title_associate">Associate</string>
+    <string name="title_add_project">Add Project</string>
+    <string name="title_add_associate">Add Associate</string>
+
+    <string name="employee_id">EmployeeID</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="band">Band</string>
+    <string name="designation">Designation</string>
+    <string name="android">Android</string>
+    <string name="ios">iOS</string>
+    <string name="ux">UX</string>
+    <string name="tester">Tester</string>
+    <string name="button_submit">SUBMIT</string>
+    <string name="current_project">Current Project : </string>
+    <string name="competency">Competency : </string>
+
+
     <string name="selected_item">Selected item:</string>
     <string name="button_add_project">Button</string>
     <string name="add_current_project_hint">Add current project</string>

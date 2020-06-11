@@ -1,7 +1,6 @@
 package org.dtransform.competencyapp.ui.associate.adapter
 
 import android.view.LayoutInflater
-import android.view.View.inflate
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.dtransform.competencyapp.R
@@ -60,8 +59,6 @@ class AssociateAdapter(private var associates: MutableList<AssociateEntity>, lis
     fun removeItem(position: Int) {
         associateList.removeAt(position)
         notifyItemRemoved(position)
-        /*dataModelList.removeAt(position)
-        notifyItemRemoved(position)*/
     }
 
 }

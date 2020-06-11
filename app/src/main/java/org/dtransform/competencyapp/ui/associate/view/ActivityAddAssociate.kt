@@ -11,23 +11,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_add_associate.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.dtransform.competencyapp.R
 import org.dtransform.competencyapp.data.local.entity.AssociateEntity
 import org.dtransform.competencyapp.data.local.entity.ProjectEntity
 import org.dtransform.competencyapp.ui.associate.viewmodel.AssociateViewModel
 import org.dtransform.competencyapp.ui.project.viewmodel.ProjectViewModel
+import kotlin.coroutines.CoroutineContext
 
 
 /**
  * @activity{ActivityAddAssociate} -> view for associate
  */
 
-class ActivityAddAssociate : AppCompatActivity() {
+class ActivityAddAssociate() : AppCompatActivity(), CoroutineScope {
 
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
 
     private lateinit var associateViewModel: AssociateViewModel
     private lateinit var projectViewModel: ProjectViewModel
@@ -67,6 +67,9 @@ class ActivityAddAssociate : AppCompatActivity() {
         var currentProject: String? = null
         var competency: String? = null
 
+        /**
+         * if update from previous fragment
+         */
         if (isComingFrom.equals("update")) {
             val updateID = intent.getStringExtra("id")
             val updateName = intent.getStringExtra("name")
@@ -75,6 +78,7 @@ class ActivityAddAssociate : AppCompatActivity() {
             val updateCompetency = intent.getStringExtra("competency")
             val updateCP = intent.getStringExtra("cp")
 
+            inputAssociateID.isEnabled = false
             inputAssociateID.setText(updateID)
             inputAssociateName.setText(updateName)
             inputAssociateBand.setText(updateBand)
@@ -119,7 +123,6 @@ class ActivityAddAssociate : AppCompatActivity() {
                     null
                 }
             }
-            //Toast.makeText(applicationContext, currentProject, Toast.LENGTH_SHORT).show()
         }
         projectViewModel.allProjects.observe(this, Observer {
 
@@ -130,26 +133,30 @@ class ActivityAddAssociate : AppCompatActivity() {
             Log.e("IT SIZE", "${it.size}")
             Log.e("Project SIZE", "${projectList.size}")
             Log.e("Project SIZE", "${projectList.size}")
-            //Log.e("Project array", "$projectArray")
 
         })
 
 
-
-        val spinnerArray:Array<String> = arrayOf("ATT FirstNet",
+        val spinnerArray: Array<String> = arrayOf(
+            "ATT FirstNet",
             "Sawari Cab App",
             "Resource Management App",
             "ATT",
             "TMobile",
-            "Bell Canada")
+            "Bell Canada"
+        )
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerArray)
-        //spinner.adapter = ArrayAdapter(this@ActivityAddAssociate, android.R.layout.simple_spinner_dropdown_item, projectArray)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = arrayAdapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
 
                 currentProject = spinnerArray[position]
                 Log.e("position : ", spinnerArray[position])
@@ -174,23 +181,22 @@ class ActivityAddAssociate : AppCompatActivity() {
             ) {
 
                 progressBarAssociate.visibility = View.VISIBLE
-                runBlocking {
+                coroutineContext.apply {
                     launch {
                         delay(2000)
                     }
+                    associateViewModel.insert(
+                        AssociateEntity(
+                            id.toString(),
+                            name.toString(),
+                            band.toString(),
+                            designation.toString(),
+                            competency.toString(),
+                            currentProject.toString()
+                        )
+                    )
                 }
 
-
-                associateViewModel.insert(
-                    AssociateEntity(
-                        id.toString(),
-                        name.toString(),
-                        band.toString(),
-                        designation.toString(),
-                        competency.toString(),
-                        currentProject.toString()
-                    )
-                )
 
                 progressBarAssociate.visibility = View.GONE
                 finish()
@@ -201,7 +207,6 @@ class ActivityAddAssociate : AppCompatActivity() {
             }
         }
     }
-
 
     private fun getIndex(spinner: Spinner, myString: String): Int {
         var index = 0

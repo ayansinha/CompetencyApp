@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@color/colorWhite"
         app:theme="@style/AppTheme.Toolbar"
-        app:title="Add Associate"
+        app:title="@string/title_add_associate"
         app:titleTextColor="@color/colorWhite" />
 
 
@@ -35,7 +36,7 @@
             android:id="@+id/inputAssociateID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="EmployeeID"
+            android:hint="@string/employee_id"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +55,7 @@
             android:id="@+id/inputAssociateName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Employee Name" />
+            android:hint="@string/employee_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +73,7 @@
             android:id="@+id/inputAssociateBand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Band" />
+            android:hint="@string/band" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +91,7 @@
             android:id="@+id/inputAssociateDesignation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Designation" />
+            android:hint="@string/designation" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
@@ -100,46 +101,67 @@
         android:layout_marginStart="@dimen/margin_8"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginEnd="@dimen/margin_8"
-        android:gravity="center"
+        android:gravity="center|start"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmployeeDesignation">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4"
+            android:text="@string/competency"
+            android:textSize="@dimen/text_size_16" />
+
         <RadioButton
             android:id="@+id/radioButtonAndroid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Android" />
+            android:text="@string/android" />
 
         <RadioButton
             android:id="@+id/radioButtoniOS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="iOS" />
+            android:text="@string/ios" />
 
         <RadioButton
             android:id="@+id/radioButtonUX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UX" />
+            android:text="@string/ux" />
 
         <RadioButton
             android:id="@+id/radioButtonTester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tester" />
+            android:text="@string/tester" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_12"
+        android:layout_marginTop="@dimen/margin_8"
+        android:textSize="@dimen/text_size_16"
+        android:text="@string/current_project"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCurrentProjects"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerCurrentProjects"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Spinner
         android:id="@+id/spinnerCurrentProjects"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_8"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginEnd="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
@@ -150,7 +172,7 @@
         android:layout_marginEnd="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_8"
         android:background="@color/colorPrimary"
-        android:text="SUBMIT"
+        android:text="@string/button_submit"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_size_16"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -167,6 +189,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

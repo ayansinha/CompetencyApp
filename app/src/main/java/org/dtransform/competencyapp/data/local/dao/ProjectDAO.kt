@@ -22,4 +22,7 @@ interface ProjectDAO{
     @Insert
     suspend fun createProject(projectEntity: ProjectEntity): Long
 
+
+    @Query("DELETE FROM project WHERE projectName = :projectName")
+    suspend fun deleteProjectByName(projectName: String)
 }

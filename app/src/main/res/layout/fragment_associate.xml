@@ -16,7 +16,7 @@
         app:menu="@menu/menu_associate"
         app:subtitleTextColor="@color/colorWhite"
         app:theme="@style/AppTheme.Toolbar"
-        app:title="Associate"
+        app:title="@string/title_associate"
         app:titleTextColor="@color/colorWhite" />
 
     <androidx.recyclerview.widget.RecyclerView
