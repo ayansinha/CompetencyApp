@@ -105,7 +105,7 @@ class FragmentAssociate : Fragment(), AssociateAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         /**
-         * swipe to delete
+         * swipe to delete to associate
          */
         val swipeHandler = object : SwipeToDeleteCallback(activity as AppCompatActivity) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

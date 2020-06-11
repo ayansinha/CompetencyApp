@@ -24,6 +24,12 @@ import org.dtransform.competencyapp.ui.associate.adapter.AssociateAdapter
 import org.dtransform.competencyapp.ui.associate.view.ActivityAddAssociate
 import org.dtransform.competencyapp.ui.project.adapter.ProjectAdapter
 import org.dtransform.competencyapp.ui.project.viewmodel.ProjectViewModel
+import org.dtransform.competencyapp.util.Constants.Companion.ATT
+import org.dtransform.competencyapp.util.Constants.Companion.ATT_FIRSTNET
+import org.dtransform.competencyapp.util.Constants.Companion.BELL
+import org.dtransform.competencyapp.util.Constants.Companion.RESOURCE
+import org.dtransform.competencyapp.util.Constants.Companion.SAWARI
+import org.dtransform.competencyapp.util.Constants.Companion.T_MOBILE
 import org.dtransform.competencyapp.util.SwipeToDeleteCallback
 
 /**
@@ -102,20 +108,33 @@ class FragmentProject : Fragment(), ProjectAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         /**
-         * swipe to delete
+         * swipe to delete project
          */
         val swipeHandler = object : SwipeToDeleteCallback(activity as AppCompatActivity) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val adapter = recyclerViewAssociate.adapter as AssociateAdapter
+                val adapter = recyclerViewProject.adapter as ProjectAdapter
                 adapter.removeItem(viewHolder.adapterPosition)
+                deleteProjectById(viewHolder.adapterPosition)
                 Log.e("POS ->", "${viewHolder.adapterPosition}")
 
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
-        itemTouchHelper.attachToRecyclerView(recyclerViewAssociate)
+        itemTouchHelper.attachToRecyclerView(recyclerViewProject)
 
+        recyclerViewProject.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(activity)
+            addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        }
 
+        recyclerViewAdapter = ProjectAdapter(arrayListOf(), this)
+        recyclerViewProject.adapter = recyclerViewAdapter
+
+    }
+
+    fun deleteProjectById(index: Int) {
+        projectViewModel.delete(index.toLong())
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -151,13 +170,14 @@ class FragmentProject : Fragment(), ProjectAdapter.OnItemClickListener {
             if (it.size < 1) {
                 Log.e("PROJECT IF->", "${it.size}")
 
+
                 val list = arrayListOf(
-                    "ATT FirstNet",
-                    "Sawari Cab App",
-                    "Resource Management App",
-                    "ATT",
-                    "TMobile",
-                    "Bell Canada"
+                    ATT_FIRSTNET,
+                    SAWARI,
+                    RESOURCE,
+                    ATT,
+                    T_MOBILE,
+                    BELL
                 )
                 list.forEach { projectData ->
                     projectEntity = ProjectEntity(projectData)

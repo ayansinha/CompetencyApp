@@ -35,4 +35,11 @@ class ProjectViewModel(application: Application): AndroidViewModel(application) 
     fun insertListOfProjects(projectList: MutableList<ProjectEntity>) = viewModelScope.launch {
         repository.inertListOfProjects(projectList)
     }
+
+    /**
+     * delete project
+     */
+    fun delete(id: Long) = viewModelScope.launch {
+        repository.deleteProject(id)
+    }
 }

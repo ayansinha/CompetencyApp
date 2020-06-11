@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/employee_id"
+            android:imeOptions="actionNext"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,12 +50,14 @@
         android:layout_marginEnd="@dimen/margin_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/Widget.Design.TextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmployeeID">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputAssociateName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:hint="@string/employee_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,6 +76,7 @@
             android:id="@+id/inputAssociateBand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:hint="@string/band" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,6 +95,7 @@
             android:id="@+id/inputAssociateDesignation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:hint="@string/designation" />
     </com.google.android.material.textfield.TextInputLayout>
 

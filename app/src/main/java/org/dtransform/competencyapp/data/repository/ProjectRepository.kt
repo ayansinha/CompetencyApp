@@ -44,11 +44,12 @@ class ProjectRepository(application: Application) {
         projectDAO.createProject(projectEntity)
     }
 
+
     /**
      * delete single project
      */
-    suspend fun deleteProject(projectName:String) {
-        projectDAO.deleteProjectByName(projectName)
+    suspend fun deleteProject(id:Long) {
+        projectDAO.deleteProjectById(id)
     }
 
 }

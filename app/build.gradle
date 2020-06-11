@@ -45,6 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.3.0'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'
@@ -56,8 +57,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4'
     implementation "androidx.appcompat:appcompat:$rootProject.design_support_version"
     implementation "com.google.android.material:material:$rootProject.design_support_version"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockito_version"
 
     /**
      * recycler-view, card-view and swipe-refresh dependency
@@ -93,5 +96,4 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
-    androidTestImplementation 'androidx.test:rules:1.3.0-beta02'
 }

@@ -17,6 +17,15 @@ import org.dtransform.competencyapp.data.local.entity.AssociateEntity
 import org.dtransform.competencyapp.data.local.entity.ProjectEntity
 import org.dtransform.competencyapp.ui.associate.viewmodel.AssociateViewModel
 import org.dtransform.competencyapp.ui.project.viewmodel.ProjectViewModel
+import org.dtransform.competencyapp.util.Constants
+import org.dtransform.competencyapp.util.Constants.Companion.ATT
+import org.dtransform.competencyapp.util.Constants.Companion.ATT_FIRSTNET
+import org.dtransform.competencyapp.util.Constants.Companion.BELL
+import org.dtransform.competencyapp.util.Constants.Companion.RESOURCE
+import org.dtransform.competencyapp.util.Constants.Companion.SAWARI
+import org.dtransform.competencyapp.util.Constants.Companion.T_MOBILE
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 
 
@@ -24,7 +33,7 @@ import kotlin.coroutines.CoroutineContext
  * @activity{ActivityAddAssociate} -> view for associate
  */
 
-class ActivityAddAssociate() : AppCompatActivity(), CoroutineScope {
+class ActivityAddAssociate : AppCompatActivity(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
@@ -136,14 +145,13 @@ class ActivityAddAssociate() : AppCompatActivity(), CoroutineScope {
 
         })
 
-
         val spinnerArray: Array<String> = arrayOf(
-            "ATT FirstNet",
-            "Sawari Cab App",
-            "Resource Management App",
-            "ATT",
-            "TMobile",
-            "Bell Canada"
+            ATT_FIRSTNET,
+            SAWARI,
+            RESOURCE,
+            ATT,
+            T_MOBILE,
+            BELL
         )
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerArray)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -158,6 +166,7 @@ class ActivityAddAssociate() : AppCompatActivity(), CoroutineScope {
                 id: Long
             ) {
 
+                //currentProject = spinnerArray[position]
                 currentProject = spinnerArray[position]
                 Log.e("position : ", spinnerArray[position])
                 Log.e("position : ", currentProject)
